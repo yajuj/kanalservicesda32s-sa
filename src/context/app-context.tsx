@@ -54,13 +54,12 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
         ? `?${property}=${query}`
         : `?${property}_${operator}=${query}`
       : '';
-  let sortByQuery = sortBy
-    ? `${filterQuery ? '&' : '?'}_sort=${sortBy}&_order=asc`
-    : '';
+  let sortByQuery = sortBy ? `_sort=${sortBy}&_order=asc` : '';
+  let questionMarkOrAmpersandBeforeSort = filterQuery ? '&' : '?';
 
   const BASE_URL = 'http://localhost:3001/items';
 
-  const URL = `${BASE_URL}${filterQuery}${sortByQuery}`;
+  const URL = `${BASE_URL}${filterQuery}${questionMarkOrAmpersandBeforeSort}${sortByQuery}`;
 
   React.useEffect(() => {
     fetchItems(URL);
@@ -71,7 +70,7 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
       fetchItems(URL);
     }
     if (!query && operator !== 'default' && property && !items.length) {
-      fetchItems(BASE_URL + sortByQuery);
+      fetchItems(BASE_URL + '?' + sortByQuery);
     }
   }, [query, operator, property, sortBy]);
 
@@ -102,7 +101,7 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
     setQuery('');
     setOperator('default');
     setProperty('');
-    fetchItems(BASE_URL + sortByQuery);
+    fetchItems(BASE_URL + '?' + sortByQuery);
   };
 
   const _setProperty = (e: React.ChangeEvent<HTMLSelectElement>) => {

@@ -75,9 +75,7 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
   }, [query, operator, property, sortBy]);
 
   React.useEffect(() => {
-    if (sortBy) {
-      fetchItems(URL);
-    }
+    fetchItems(URL);
   }, [sortBy]);
 
   const fetchItems = async (URL: string) => {
@@ -135,6 +133,9 @@ const AppContexProvider: React.FC<AppContexProviderProps> = ({ children }) => {
         break;
       case 'distance':
         setSortBy(value);
+        break;
+      default:
+        setSortBy('');
         break;
     }
   };

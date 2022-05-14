@@ -38,7 +38,7 @@ const FilterComponent = () => {
           type='text'
           placeholder='Поиск'
         />
-        {query && operator !== 'default' && property && (
+        {operator !== 'default' && property && (
           <button
             onClick={clearFilter}
             className='btn btn-danger position-absolute top-50 start-100 translate-middle-y mx-3'

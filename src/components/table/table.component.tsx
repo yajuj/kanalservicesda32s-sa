@@ -38,7 +38,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ items }) => {
           </tr>
         </thead>
         <tbody>
-          {items.slice(0, 10).map(item => (
+          {items.map(item => (
             <tr key={item.id}>
               <th scope='row'>{item.id}</th>
               <td>{new Date(item.date).toLocaleDateString()}</td>

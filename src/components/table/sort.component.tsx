@@ -5,15 +5,16 @@ const SortComponent = () => {
   const { sortBy, setSortBy } = useAppContext();
   return (
     <div className='text-end my-2'>
-      <select onChange={setSortBy} value={sortBy}>
-        <option disabled value=''>
-          Сортировка
-        </option>
-        <option value='date'>По Дате</option>
-        <option value='title'>По Названию</option>
-        <option value='quantity'>По Количеству</option>
-        <option value='distance'>По Расстоянию</option>
-      </select>
+      <div className='border border-secondary rounded d-inline p-1'>
+        <span>Сортировка&nbsp;</span>
+        <select className='border-0' onChange={setSortBy} value={sortBy}>
+          <option value=''>отсутствует</option>
+          <option value='date'>по Дате</option>
+          <option value='title'>по Названию</option>
+          <option value='quantity'>по Количеству</option>
+          <option value='distance'>по Расстоянию</option>
+        </select>
+      </div>
     </div>
   );
 };
